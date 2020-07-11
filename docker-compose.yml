@@ -1,0 +1,15 @@
+version: '3.2'
+services:
+  postgres:
+    image: postgres:12
+    container_name: microservices-postgres
+    ports:
+      - '6543:5432'
+    restart: always
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: devpassword
+
+volumes:
+  db_data:

@@ -1,0 +1,30 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/edge/src",
+  "monorepo": true,
+  "root": "apps/edge",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/edge/tsconfig.app.json"
+  },
+  "projects": {
+    "edge": {
+      "type": "application",
+      "root": "apps/edge",
+      "entryFile": "main",
+      "sourceRoot": "apps/edge/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/edge/tsconfig.app.json"
+      }
+    },
+    "auth": {
+      "type": "application",
+      "root": "apps/auth",
+      "entryFile": "main",
+      "sourceRoot": "apps/auth/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/auth/tsconfig.app.json"
+      }
+    }
+  }
+}

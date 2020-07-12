@@ -11,14 +11,17 @@ $ cp .env.example .env
 # development
 $ yarn run start edge
 $ yarn run start auth
+$ yarn run start mailer
 
 # watch mode
 $ yarn run start:dev edge
 $ yarn run start:dev auth
+$ yarn run start:dev mailer
 
 # production mode
 $ yarn run start:prod edge
 $ yarn run start:prod auth
+$ yarn run start:prod mailer
 ```
 
 ## Test

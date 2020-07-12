@@ -11,5 +11,18 @@ services:
     environment:
       POSTGRES_PASSWORD: devpassword
 
+  rabbitmq:
+    image: rabbitmq:3.8.5-management-alpine
+    container_name: microservices-rabbitmq
+    volumes:
+      - ./.docker/rabbitmq/data/:/var/lib/rabbitmq/
+      - ./.docker/rabbitmq/logs/:/var/log/rabbitmq/
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - 5672:5672
+      - 15672:15672
+
 volumes:
   db_data:

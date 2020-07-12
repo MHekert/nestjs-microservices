@@ -2,7 +2,7 @@ import { BaseEntity, PrimaryGeneratedColumn, Column, Entity } from 'typeorm';
 
 export interface IUser {
   id?: number;
-  username: string;
+  email: string;
   password: string;
   isVerified: boolean;
   verificationCode: string | null;
@@ -14,7 +14,7 @@ export class User extends BaseEntity {
   id: number;
 
   @Column({ unique: true })
-  username: string;
+  email: string;
 
   @Column()
   password: string;

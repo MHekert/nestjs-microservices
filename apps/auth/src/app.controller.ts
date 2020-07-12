@@ -8,15 +8,22 @@ import { UserResponseDto } from './dto/user-response.dto';
 import { validationPipeConfig } from '../../../libs/config/validation-pipe.config';
 import { LoginDto } from './dto/login.dto';
 import { TokenResponseDto } from './dto/token-response.dto';
+import { MailerService } from './mailer/mailer.service';
+import { SignUpEventDto } from './dto/sign-up-event.dto';
 
 @UsePipes(new ValidationPipe(validationPipeConfig))
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly appService: AppService,
+    private readonly mailerService: MailerService,
+  ) {}
 
   @MessagePattern({ cmd: 'SIGN_UP' })
   async signUp(@Payload() data: SignUpDto): Promise<UserResponseDto> {
     const user = await this.appService.createUser(data);
+
+    this.mailerService.publishSignUp(plainToClass(SignUpEventDto, user));
 
     return plainToClass(UserResponseDto, user);
   }

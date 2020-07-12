@@ -1,12 +1,13 @@
-import { IsString, Matches } from 'class-validator';
+import { IsString, Matches, IsEmail } from 'class-validator';
 
 export class SignUpDto {
+  @IsEmail()
   @IsString()
-  username: string;
+  email: string;
 
   @IsString()
   @Matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, {
-    message: 'password too weak',
+    message: 'Password too weak',
   })
   password: string;
 }

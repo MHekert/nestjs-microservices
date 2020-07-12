@@ -1,13 +1,15 @@
 import { Exclude } from 'class-transformer';
 
-export class UserResponseDto {
-  id: number;
+export class SignUpEventDto {
   email: string;
-  isVerified: boolean;
+  verificationCode: string;
 
   @Exclude()
   password: string;
 
   @Exclude()
-  verificationCode: string;
+  id: number;
+
+  @Exclude()
+  isVerified: boolean;
 }

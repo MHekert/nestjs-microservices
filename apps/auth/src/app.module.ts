@@ -5,6 +5,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfigFactory } from './config/typeorm.config';
 import { UserRepository } from './user.repository';
+import { ClientsModule, Transport } from '@nestjs/microservices';
+import { MailerService } from './mailer/mailer.service';
 
 @Module({
   imports: [
@@ -17,8 +19,23 @@ import { UserRepository } from './user.repository';
       useFactory: typeOrmConfigFactory,
     }),
     TypeOrmModule.forFeature([UserRepository]),
+    ClientsModule.register([
+      {
+        name: 'MAILER',
+        transport: Transport.RMQ,
+        options: {
+          urls: [
+            `amqp://${process.env['MAILER_HOST']}:${process.env['MAILER_PORT']}`,
+          ],
+          queue: 'mailer_queue',
+          queueOptions: {
+            durable: true,
+          },
+        },
+      },
+    ]),
   ],
   controllers: [AppController],
-  providers: [AppService, ConfigService],
+  providers: [AppService, ConfigService, MailerService],
 })
 export class AppModule {}

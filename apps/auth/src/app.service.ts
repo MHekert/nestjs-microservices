@@ -18,13 +18,14 @@ export class AppService {
   ) {}
 
   async createUser(signUpDto: SignUpDto) {
-    const { username, password } = signUpDto;
-    const user = await this.userRepository.findUserByUsername(username);
+    const { email, password } = signUpDto;
+    const user = await this.userRepository.findUserByEmail(email);
 
-    if (user) throw new Exception.UnprocessableEntity('Username taken');
+    if (user)
+      throw new Exception.UnprocessableEntity('E-mail address already in use');
 
     const userData: IUser = {
-      username,
+      email,
       password: await AppService.hashPassword(password),
       verificationCode: generate(),
       isVerified: false,
@@ -34,8 +35,8 @@ export class AppService {
   }
 
   async verifyUser(verifyUserDto: VerifyUserDto): Promise<User> {
-    const { username, verificationCode } = verifyUserDto;
-    const user = await this.userRepository.findUserByUsername(username);
+    const { email, verificationCode } = verifyUserDto;
+    const user = await this.userRepository.findUserByEmail(email);
 
     if (user.verificationCode !== verificationCode)
       throw new Exception.Unauthorized();
@@ -45,23 +46,24 @@ export class AppService {
   }
 
   async login(data: SignUpDto): Promise<string> {
-    const { username, password } = data;
+    const { email, password } = data;
 
     const user = await this.userRepository.findOne({
-      username,
+      email,
     });
 
     if (!(await AppService.compareHash(password, user.password)))
       throw new Exception.NotFound();
 
-    if (user) throw new Exception.UnprocessableEntity('username taken');
+    if (user)
+      throw new Exception.UnprocessableEntity('E-mail address lready in use');
 
     return AppService.generateToken(user);
   }
 
   private static generateToken(user: User) {
-    const { username, id } = user;
-    return sign({ username, id }, process.env.TOKEN_SECRET, {
+    const { email, id } = user;
+    return sign({ email, id }, process.env.TOKEN_SECRET, {
       expiresIn: '2h',
     });
   }

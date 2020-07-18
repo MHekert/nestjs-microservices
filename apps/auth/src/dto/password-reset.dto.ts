@@ -1,10 +1,7 @@
 import { IsString, IsEmail } from 'class-validator';
 
-export class VerifyUserDto {
+export class PasswordResetDto {
+  @IsString()
   @IsEmail()
-  @IsString()
   email: string;
-
-  @IsString()
-  verificationCode: string;
 }

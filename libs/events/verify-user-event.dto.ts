@@ -1,13 +1,7 @@
 import { Exclude, Expose } from 'class-transformer';
 
 @Exclude()
-export class UserResponseDto {
-  @Expose()
-  id: number;
-
+export class VerifyUserEventDto {
   @Expose()
   email: string;
-
-  @Expose()
-  isVerified: boolean;
 }

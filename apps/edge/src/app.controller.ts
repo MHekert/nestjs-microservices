@@ -22,4 +22,14 @@ export class AppController {
   getUser(@Body() dto: any): Observable<any> {
     return this.appService.login(dto);
   }
+
+  @Post('/reset-password')
+  resetPassword(@Body() dto: any): Observable<any> {
+    return this.appService.resetPassword(dto);
+  }
+
+  @Post('/change-password')
+  changePassword(@Body() dto: any): Observable<any> {
+    return this.appService.changePassword(dto);
+  }
 }

@@ -1,0 +1,140 @@
+{
+	"info": {
+		"_postman_id": "8722e6d2-190b-43e9-89b0-f084ef408b4a",
+		"name": "nestjs-microservices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"user1@example.com\",\n    \"password\": \"QWerty123!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{appUrl}}/login",
+					"host": [
+						"{{appUrl}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sign up",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"user1@example.com\",\n    \"password\": \"QWerty123!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{appUrl}}/signup",
+					"host": [
+						"{{appUrl}}"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verify user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"user1@example.com\",\n    \"verificationCode\": \"AozCcCAkK\"\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{appUrl}}/verify",
+					"host": [
+						"{{appUrl}}"
+					],
+					"path": [
+						"verify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reset password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"user1@example.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{appUrl}}/reset-password",
+					"host": [
+						"{{appUrl}}"
+					],
+					"path": [
+						"reset-password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"user1@example.com\",\n    \"verificationCode\": \"9h_I0UXKL\",\n    \"password\": \"QWerty123!.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{appUrl}}/change-password",
+					"host": [
+						"{{appUrl}}"
+					],
+					"path": [
+						"change-password"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

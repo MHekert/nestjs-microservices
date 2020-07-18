@@ -9,7 +9,11 @@ import { validationPipeConfig } from '../../../libs/config/validation-pipe.confi
 import { LoginDto } from './dto/login.dto';
 import { TokenResponseDto } from './dto/token-response.dto';
 import { MailerService } from './mailer/mailer.service';
-import { SignUpEventDto } from './dto/sign-up-event.dto';
+import { SignUpEventDto } from '../../../libs/events/sign-up-event.dto';
+import { VerifyUserEventDto } from '../../../libs/events/verify-user-event.dto';
+import { PasswordResetDto } from './dto/password-reset.dto';
+import { PasswordChangeDto } from './dto/password-change.dto';
+import { PasswordResetEventDto } from '../../../libs/events/password-reset-event.dto';
 
 @UsePipes(new ValidationPipe(validationPipeConfig))
 @Controller()
@@ -32,6 +36,10 @@ export class AppController {
   async verifyUser(@Payload() data: VerifyUserDto): Promise<UserResponseDto> {
     const user = await this.appService.verifyUser(data);
 
+    this.mailerService.publishVerification(
+      plainToClass(VerifyUserEventDto, user),
+    );
+
     return plainToClass(UserResponseDto, user);
   }
 
@@ -40,5 +48,22 @@ export class AppController {
     const token = await this.appService.login(data);
 
     return plainToClass(TokenResponseDto, { token });
+  }
+
+  @MessagePattern({ cmd: 'PASSWORD_RESET' })
+  async resetPassword(@Payload() data: PasswordResetDto) {
+    const user = await this.appService.resetPassword(data);
+    const passwordResetEventDto = plainToClass(PasswordResetEventDto, user);
+
+    await this.mailerService
+      .publishPasswordReset(passwordResetEventDto)
+      .toPromise();
+  }
+
+  @MessagePattern({ cmd: 'PASSWORD_CHANGE' })
+  async changePassword(@Payload() data: PasswordChangeDto) {
+    const user = await this.appService.changePassword(data);
+
+    return plainToClass(UserResponseDto, user);
   }
 }

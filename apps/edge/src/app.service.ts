@@ -17,4 +17,12 @@ export class AppService {
   login(dto: any): Observable<any> {
     return this.client.send({ cmd: 'LOGIN' }, dto);
   }
+
+  resetPassword(dto: any): Observable<any> {
+    return this.client.send({ cmd: 'PASSWORD_RESET' }, dto);
+  }
+
+  changePassword(dto: any): Observable<any> {
+    return this.client.send({ cmd: 'PASSWORD_CHANGE' }, dto);
+  }
 }

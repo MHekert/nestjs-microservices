@@ -1,6 +1,6 @@
 import { ValidationPipeOptions } from '@nestjs/common';
 import { ValidationError } from 'class-validator';
-import * as Exception from 'libs/errors/custom-rpc-exception';
+import * as Exception from '../errors/custom-rpc-exception';
 
 export const validationPipeConfig: ValidationPipeOptions = {
   whitelist: true,

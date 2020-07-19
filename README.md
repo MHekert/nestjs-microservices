@@ -19,9 +19,9 @@ $ yarn run start:dev auth
 $ yarn run start:dev mailer
 
 # production mode
-$ yarn run start:prod edge
-$ yarn run start:prod auth
-$ yarn run start:prod mailer
+$ yarn run start:prod:edge
+$ yarn run start:prod:auth
+$ yarn run start:prod:mailer
 ```
 
 ## Test

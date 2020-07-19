@@ -12,7 +12,9 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/apps/edge/main",
+    "start:prod:edge": "node dist/apps/edge/main",
+    "start:prod:auth": "node dist/apps/auth/main",
+    "start:prod:mailer": "node dist/apps/mailer/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -37,6 +39,8 @@
     "lodash": "^4.17.19",
     "nodemailer": "^6.4.10",
     "pg": "^8.2.1",
+    "pino": "^6.4.0",
+    "pino-pretty": "^4.0.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4",
@@ -54,6 +58,7 @@
     "@types/lodash": "^4.14.157",
     "@types/node": "^13.9.1",
     "@types/nodemailer": "^6.4.0",
+    "@types/pino": "^6.3.0",
     "@types/shortid": "^0.0.29",
     "@types/supertest": "^2.0.8",
     "@typescript-eslint/eslint-plugin": "3.0.2",
@@ -88,6 +93,9 @@
       "<rootDir>/apps/",
       "<rootDir>/libs/"
     ],
-    "moduleNameMapper": {}
+    "moduleNameMapper": {
+      "@app/logger/(.*)": "<rootDir>/libs/logger/src/$1",
+      "@app/logger": "<rootDir>/libs/logger/src"
+    }
   }
 }

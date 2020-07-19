@@ -7,6 +7,7 @@ import { typeOrmConfigFactory } from './config/typeorm.config';
 import { UserRepository } from './user.repository';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { MailerService } from './mailer/mailer.service';
+import { LoggerModule } from '../../../libs/logger/src';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { MailerService } from './mailer/mailer.service';
         },
       },
     ]),
+    LoggerModule,
   ],
   controllers: [AppController],
   providers: [AppService, ConfigService, MailerService],

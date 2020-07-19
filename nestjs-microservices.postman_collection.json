@@ -20,11 +20,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{appUrl}}/login",
+					"raw": "{{appUrl}}/auth/login",
 					"host": [
 						"{{appUrl}}"
 					],
 					"path": [
+						"auth",
 						"login"
 					]
 				}
@@ -46,11 +47,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{appUrl}}/signup",
+					"raw": "{{appUrl}}/auth/signup",
 					"host": [
 						"{{appUrl}}"
 					],
 					"path": [
+						"auth",
 						"signup"
 					]
 				}
@@ -72,11 +74,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{appUrl}}/verify",
+					"raw": "{{appUrl}}/auth/verify",
 					"host": [
 						"{{appUrl}}"
 					],
 					"path": [
+						"auth",
 						"verify"
 					]
 				}
@@ -98,11 +101,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{appUrl}}/reset-password",
+					"raw": "{{appUrl}}/auth/reset-password",
 					"host": [
 						"{{appUrl}}"
 					],
 					"path": [
+						"auth",
 						"reset-password"
 					]
 				}
@@ -124,11 +128,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{appUrl}}/change-password",
+					"raw": "{{appUrl}}/auth/change-password",
 					"host": [
 						"{{appUrl}}"
 					],
 					"path": [
+						"auth",
 						"change-password"
 					]
 				}

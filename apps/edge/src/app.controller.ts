@@ -1,10 +1,18 @@
-import { Controller, Post, Body, UseFilters } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  UseFilters,
+  UseInterceptors,
+} from '@nestjs/common';
 import { AppService } from './app.service';
 import { Observable } from 'rxjs';
 import { RpcToHttpExceptionFilter } from './rpc-to-http-exception.filter';
+import { LoggingInterceptor } from '../../../libs/interceptors/logging.interceptor';
 
+@UseInterceptors(LoggingInterceptor)
 @UseFilters(new RpcToHttpExceptionFilter())
-@Controller()
+@Controller('/auth')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 

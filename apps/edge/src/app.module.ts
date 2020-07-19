@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Transport, ClientsModule } from '@nestjs/microservices';
 import { HealthModule } from './health/health.module';
+import { LoggerModule } from '../../../libs/logger/src';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { HealthModule } from './health/health.module';
       },
     ]),
     HealthModule,
+    LoggerModule,
   ],
   controllers: [AppController],
   providers: [AppService, ConfigService],

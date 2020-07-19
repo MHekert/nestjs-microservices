@@ -1,4 +1,9 @@
-import { Controller, UsePipes, ValidationPipe } from '@nestjs/common';
+import {
+  Controller,
+  UsePipes,
+  ValidationPipe,
+  UseInterceptors,
+} from '@nestjs/common';
 import { AppService } from './app.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { SignUpDto } from './dto/sign-up.dto';
@@ -14,8 +19,10 @@ import { VerifyUserEventDto } from '../../../libs/events/verify-user-event.dto';
 import { PasswordResetDto } from './dto/password-reset.dto';
 import { PasswordChangeDto } from './dto/password-change.dto';
 import { PasswordResetEventDto } from '../../../libs/events/password-reset-event.dto';
+import { LoggingInterceptor } from '../../../libs/interceptors/logging.interceptor';
 
 @UsePipes(new ValidationPipe(validationPipeConfig))
+@UseInterceptors(LoggingInterceptor)
 @Controller()
 export class AppController {
   constructor(

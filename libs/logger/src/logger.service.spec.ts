@@ -1,12 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { LoggerService } from './logger.service';
+import { ConfigModule } from '@nestjs/config';
+import { PinoAdapter } from './pino-adapter';
 
 describe('LoggerService', () => {
   let service: LoggerService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [LoggerService],
+      imports: [ConfigModule],
+      providers: [LoggerService, PinoAdapter],
     }).compile();
 
     service = module.get<LoggerService>(LoggerService);

@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { ClientProxy } from '@nestjs/microservices';
 
 @Injectable()
-export class AppService {
+export class AuthService {
   constructor(@Inject('AUTH') private client: ClientProxy) {}
 
   signUp(dto: any): Observable<any> {

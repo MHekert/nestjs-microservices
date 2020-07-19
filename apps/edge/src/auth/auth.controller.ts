@@ -5,39 +5,39 @@ import {
   UseFilters,
   UseInterceptors,
 } from '@nestjs/common';
-import { AppService } from './app.service';
+import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
-import { RpcToHttpExceptionFilter } from './rpc-to-http-exception.filter';
-import { LoggingInterceptor } from '../../../libs/interceptors/logging.interceptor';
+import { RpcToHttpExceptionFilter } from '../rpc-to-http-exception.filter';
+import { LoggingInterceptor } from '../../../../libs/interceptors/logging.interceptor';
 
 @UseInterceptors(LoggingInterceptor)
 @UseFilters(new RpcToHttpExceptionFilter())
-@Controller('/auth')
-export class AppController {
-  constructor(private readonly appService: AppService) {}
+@Controller('auth')
+export class AuthController {
+  constructor(private readonly authService: AuthService) {}
 
   @Post('/signup')
   signUp(@Body() dto: any): Observable<any> {
-    return this.appService.signUp(dto);
+    return this.authService.signUp(dto);
   }
 
   @Post('/verify')
   verifyUser(@Body() dto: any): Observable<any> {
-    return this.appService.verifyUser(dto);
+    return this.authService.verifyUser(dto);
   }
 
   @Post('/login')
   getUser(@Body() dto: any): Observable<any> {
-    return this.appService.login(dto);
+    return this.authService.login(dto);
   }
 
   @Post('/reset-password')
   resetPassword(@Body() dto: any): Observable<any> {
-    return this.appService.resetPassword(dto);
+    return this.authService.resetPassword(dto);
   }
 
   @Post('/change-password')
   changePassword(@Body() dto: any): Observable<any> {
-    return this.appService.changePassword(dto);
+    return this.authService.changePassword(dto);
   }
 }

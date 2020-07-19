@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Transport, ClientsModule } from '@nestjs/microservices';
 import { HealthModule } from './health/health.module';
 import { LoggerModule } from '../../../libs/logger/src';
+import { AuthController } from './auth/auth.controller';
+import { AuthService } from './auth/auth.service';
 
 @Module({
   imports: [
@@ -21,7 +21,7 @@ import { LoggerModule } from '../../../libs/logger/src';
     HealthModule,
     LoggerModule,
   ],
-  controllers: [AppController],
-  providers: [AppService, ConfigService],
+  controllers: [AuthController],
+  providers: [ConfigService, AuthService],
 })
 export class AppModule {}

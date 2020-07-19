@@ -31,5 +31,15 @@
       "cwd": "${workspaceRoot}",
       "protocol": "inspector"
     }
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Resource debug",
+      "args": ["${workspaceFolder}/apps/resource/src/main.ts"],
+      "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+      "sourceMaps": true,
+      "cwd": "${workspaceRoot}",
+      "protocol": "inspector"
+    }
   ]
 }

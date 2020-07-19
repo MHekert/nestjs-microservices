@@ -5,7 +5,6 @@ import { AuthService } from './auth.service';
 
 describe('Auth Controller', () => {
   let controller: AuthController;
-  const configServiceMock = { get: jest.fn().mockImplementation(arg => arg) };
   const loggerMock = { log: jest.fn().mockImplementation(arg => arg) };
   let authServiceMock;
 

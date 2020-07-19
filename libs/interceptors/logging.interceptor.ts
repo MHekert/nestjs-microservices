@@ -4,7 +4,8 @@ import {
   ExecutionContext,
   CallHandler,
 } from '@nestjs/common';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { LoggerService } from '../logger/src';
 
 @Injectable()
@@ -20,6 +21,11 @@ export class LoggingInterceptor implements NestInterceptor {
 
     this.logger.log({ message });
 
-    return next.handle();
+    return next.handle().pipe(
+      catchError(err => {
+        this.logger.error(err);
+        return throwError(err);
+      }),
+    );
   }
 }

@@ -43,6 +43,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/logger/tsconfig.lib.json"
       }
+    },
+    "resource": {
+      "type": "application",
+      "root": "apps/resource",
+      "entryFile": "main",
+      "sourceRoot": "apps/resource/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/resource/tsconfig.app.json"
+      }
     }
   }
 }

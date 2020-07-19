@@ -11,7 +11,7 @@ import { RpcToHttpExceptionFilter } from '../rpc-to-http-exception.filter';
 import { LoggingInterceptor } from '../../../../libs/interceptors/logging.interceptor';
 
 @UseInterceptors(LoggingInterceptor)
-@UseFilters(new RpcToHttpExceptionFilter())
+@UseFilters(RpcToHttpExceptionFilter)
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}

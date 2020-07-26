@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script>
+      const connect = () => {
+        const token = document.getElementById('token').value;
+        const socket = io('http://localhost:5004');
+        socket.on('connect', () => socket.emit('join', { token }, console.log));
+        socket.on('events', data => console.log('event', data));
+        socket.on('exception', data => console.log('exception', data));
+        socket.on('disconnect', () => console.log('Disconnected'));
+      };
+    </script>
+  </head>
+
+  <body>
+    <label for="token">Insert JWT</label><br />
+    <input type="text" name="token" id="token" />
+    <input type="button" value="Connect" onclick="connect()" />
+  </body>
+</html>

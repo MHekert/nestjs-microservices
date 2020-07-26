@@ -3,6 +3,7 @@ services:
   postgres:
     image: postgres:12
     container_name: microservices-postgres
+    restart: always
     ports:
       - '6543:5432'
     restart: always
@@ -14,6 +15,7 @@ services:
   rabbitmq:
     image: rabbitmq:3.8.5-management-alpine
     container_name: microservices-rabbitmq
+    restart: always
     volumes:
       - ./.docker/rabbitmq/data/:/var/lib/rabbitmq/
       - ./.docker/rabbitmq/logs/:/var/log/rabbitmq/
@@ -27,7 +29,16 @@ services:
   mongo:
     image: mongo:4.2.8
     container_name: microservices-mongodb
+    restart: always
     ports:
       - 27017:27017
+
+  redis:
+    image: redis:6.0.6-alpine
+    container_name: microservices-redis
+    restart: always
+    ports:
+      - 6380:6379
+
 volumes:
   db_data:

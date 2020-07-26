@@ -24,6 +24,7 @@ export class AppController {
   @MessagePattern({ cmd: 'INSERT' })
   async insert(@Payload() data: InsertResourceDto): Promise<Resource> {
     const resource = await this.appService.insertResource(data);
+    this.appService.publish(resource);
 
     return resource;
   }

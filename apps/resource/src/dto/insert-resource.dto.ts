@@ -8,12 +8,13 @@ import {
 } from 'class-transformer';
 import { decode } from 'jsonwebtoken';
 import { AuthorDto } from './author.dto';
+import { IResource } from '../entities/resource.entity';
 
 const decodePayload = (_value: any, obj: any & { token: string }): AuthorDto =>
   plainToClass(AuthorDto, decode(obj.token));
 
 @Exclude()
-export class InsertResourceDto {
+export class InsertResourceDto implements IResource {
   @Expose()
   @IsString()
   name: string;

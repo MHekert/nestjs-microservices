@@ -6,6 +6,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ResourceRepository } from './repositories/resource.repository';
 import { typeOrmConfigFactory } from './config/typeorm.config';
 import { LoggerModule } from '../../../libs/logger/src';
+import { ClientsModule, Transport } from '@nestjs/microservices';
 
 @Module({
   imports: [
@@ -19,6 +20,15 @@ import { LoggerModule } from '../../../libs/logger/src';
     }),
     TypeOrmModule.forFeature([ResourceRepository]),
     LoggerModule,
+    ClientsModule.register([
+      {
+        name: 'SOCKETS',
+        transport: Transport.REDIS,
+        options: {
+          url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
+        },
+      },
+    ]),
   ],
   controllers: [AppController],
   providers: [AppService],

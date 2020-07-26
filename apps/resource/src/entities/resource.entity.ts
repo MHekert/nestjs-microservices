@@ -1,11 +1,11 @@
 import { BaseEntity, Column, Entity, ObjectID, ObjectIdColumn } from 'typeorm';
-import { Author } from './author.entity';
+import { Author, IAuthor } from './author.entity';
 
 export interface IResource {
-  id: ObjectID;
-  description: string;
+  id?: ObjectID;
+  description?: string;
   name: string;
-  author: Author;
+  author: IAuthor;
 }
 
 @Entity()

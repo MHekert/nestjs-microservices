@@ -9,8 +9,8 @@ export class RedisIoAdapter extends IoAdapter {
   constructor(app: INestApplication) {
     super(app);
     this.redisAdapter = redisIoAdapter({
-      host: process.env.REDIS_HOST,
-      port: parseInt(process.env.REDIS_PORT),
+      host: process.env.REDIS_SOCKETS_STORE_HOST,
+      port: parseInt(process.env.REDIS_SOCKETS_STORE_PORT),
     });
   }
 

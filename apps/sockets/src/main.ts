@@ -11,7 +11,7 @@ async function bootstrap() {
   const microservice = app.connectMicroservice({
     transport: Transport.REDIS,
     options: {
-      url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
+      url: `redis://${process.env.REDIS_SOCKETS_PUBSUB_PORT}:${process.env.REDIS_SOCKETS_PUBSUB_HOST}`,
     },
   });
 

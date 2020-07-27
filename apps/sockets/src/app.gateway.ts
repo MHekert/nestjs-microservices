@@ -8,7 +8,7 @@ import {
   OnGatewayInit,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
-import { SocketAuthGuard } from '../socket-auth.guard';
+import { SocketAuthGuard } from './socket-auth.guard';
 import { SocketProvider } from './socket.provider';
 
 @Injectable()

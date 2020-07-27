@@ -10,6 +10,8 @@
     "build": "nest build",
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
     "start": "nest start",
+    "start:container": "docker-compose up -d",
+    "stop:container": "docker-compose up -d",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod:edge": "node dist/apps/edge/main",

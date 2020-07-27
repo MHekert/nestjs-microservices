@@ -5,6 +5,18 @@ $ yarn install
 $ cp .env.example .env
 ```
 
+## Start container
+
+```bash
+$ yarn start:container
+```
+
+## Stop container
+
+```bash
+$ yarn stop:container
+```
+
 ## Running the app
 
 ```bash

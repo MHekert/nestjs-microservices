@@ -51,3 +51,7 @@ $ yarn run test:e2e
 # test coverage
 $ yarn run test:cov
 ```
+
+## Architecture schema
+
+![Architecture schema](./assets/architecture-schema.png)
